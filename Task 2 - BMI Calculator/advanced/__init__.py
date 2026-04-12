@@ -1,0 +1,1 @@
+"""Advanced BMI Calculator package with GUI, database, and visualization."""
