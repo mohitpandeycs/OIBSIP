@@ -41,14 +41,10 @@ Task 1 - Voice Assistant/
 │   ├── weather.py          # OpenWeatherMap
 │   ├── knowledge.py        # Wikipedia summaries
 │   └── reminder.py         # Threading-based reminders
-├── tests/
-│   └── test_commands.py    # Unit tests (routing, search extraction)
 ├── requirements.txt
-├── .env.example            # Template for environment variables
 ├── .gitignore
-├── README.md
-├── ROADMAP.md              # Phases 1–4 (Phase 4 complete)
-└── PRD.MD                  # Product / internship specification
+└── README.md
+
 ```
 
 ## Quick start
@@ -136,10 +132,6 @@ Covers routing order (Google vs Wikipedia), search query cleanup, and voice-meta
 | 2 | Greetings, time/date, web search | Complete |
 | 3 | Weather, Wikipedia, reminders, custom JSON | Complete |
 | 4 | Error handling, tests, documentation | **Complete** |
-
-## Demo video
-
-Add your recording or portfolio link here after you record the demo.
 
 ## Author
 
