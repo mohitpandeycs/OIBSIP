@@ -1,0 +1,6 @@
+SpeechRecognition==3.16.0
+pyttsx3==2.99
+PyAudio==0.2.14
+requests==2.32.5
+wikipedia==1.4.0
+python-dotenv==1.2.2
