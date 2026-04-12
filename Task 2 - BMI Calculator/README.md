@@ -1,7 +1,6 @@
 # BMI Calculator
 
-A two-version Body Mass Index (BMI) Calculator application built in Python as part of the **Oasis Infobyte Internship Program (OIBSIP)** — Task 2.
-
+A two-version Body Mass Index (BMI) Calculator application built in Python.
 ---
 
 ## 📋 Table of Contents
