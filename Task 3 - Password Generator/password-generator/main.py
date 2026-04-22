@@ -1,4 +1,4 @@
-
+#Author - Mohit Pandey
 
 from gui.app import PasswordGeneratorApp
 
