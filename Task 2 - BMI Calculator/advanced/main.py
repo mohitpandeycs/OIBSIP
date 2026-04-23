@@ -1,7 +1,4 @@
 """Entry point for the Advanced BMI Calculator GUI application.
-
-Launches the Tkinter-based BMI Calculator with SQLite persistence,
-multi-user support, historical tracking, and trend visualization.
 """
 
 import sys
