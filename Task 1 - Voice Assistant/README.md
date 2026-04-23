@@ -103,7 +103,7 @@ Speak after the welcome message. Say **exit**, **quit**, **bye**, or **goodbye**
 
 - **Microphone:** Allow Python/your terminal to use the mic; reduce background noise.
 - **Web search:** The assistant speaks a short line (e.g. “Searching on Google for …”) then opens your default browser.
-- **Weather without a city in the phrase** may prompt for the city via a second listen.
+- **Weather without a city in the phrase** may prompt for city via a second listen.
 - **Stale behavior after editing code (Windows):** `main.py` clears `assistant/__pycache__` on startup; if issues persist, delete `assistant/__pycache__` manually once.
 
 ## Testing
