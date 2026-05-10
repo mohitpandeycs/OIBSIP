@@ -1,142 +1,223 @@
-# Voice Assistant
+# Py Voice Assistant
 
-A Python-based voice assistant for the **Oasis Infobyte** Python internship. It listens for spoken commands, routes them with simple keyword matching, and responds with **text-to-speech** (pyttsx3) plus optional browser or API actions.
+A modern, modular Python-based voice assistant that processes natural language commands with keyword matching, delivers intelligent responses via offline text-to-speech, and seamlessly integrates with external APIs and web services.
+
+<p align="center">
+  <a href="https://github.com/mohitpandeycs" target="_blank">
+    <img src="https://img.shields.io/badge/License-MIT-blue" alt="MIT License" />
+  </a>
+
+  <a href="https://github.com/mohitpandeycs" target="_blank">
+    <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg" alt="PRs Welcome"/>
+  </a>
+</p>
+<center>
+
+ **• Voice-driven • Lightweight • Extensible**
+</center>
+
+## Overview
+Voice Assistant provides a comprehensive hands-free interaction experience. Users simply speak commands, and the system intelligently routes requests to appropriate handlers—whether searching the web, fetching weather data, querying knowledge bases, or executing custom actions.
+
+Core experience:
+
+1. Speak a command naturally.
+2. System recognizes and processes the intent.
+3. Receive instant voice response with actions.
 
 ## Features
 
-### Beginner (required)
+| Feature | Capability |
+|---------|-----------|
+| **Voice Commands** | Greetings, time/date queries, web search, custom voice triggers |
+| **Weather Integration** | Real-time weather data via OpenWeatherMap API |
+| **Knowledge Queries** | Instant Wikipedia summaries for "What is", "Who is" queries |
+| **Smart Reminders** | Set and receive voice reminders at specified times |
+| **Custom Commands** | JSON-based command mapping for extensibility |
+| **Offline TTS** | Text-to-speech powered by pyttsx3 (no external dependencies) |
 
-| Feature | Example phrases |
-|---------|-----------------|
-| Greetings | “Hello”, “Hi”, “Good morning” |
-| Time / date | “What time is it?”, “What’s today’s date?” |
-| Web search | “Search for …”, “On Google search for …”, “Open Google and search …” |
+**Speech Recognition:** Google Web Speech API (internet required for accuracy)  
+**Text-to-Speech:** pyttsx3 (completely offline)
 
-### Advanced (3+)
+## Tech Stack
 
-| Feature | Notes |
-|---------|--------|
-| **Weather** | OpenWeatherMap — “Weather in Mumbai”, “Tell me weather of Delhi” |
-| **Wikipedia** | “What is …”, “Tell me about …”, “Who is …” |
-| **Reminders** | “Set a reminder”, “Remind me …” |
-| **Custom commands** | JSON file `custom_commands.json` — trigger substring → spoken response |
+| Layer | Technology |
+|---|---|
+| **Language** | Python 3.10+ |
+| **Speech Recognition** | SpeechRecognition + Google Web Speech API |
+| **Text-to-Speech** | pyttsx3 |
+| **Audio I/O** | PyAudio |
+| **HTTP Requests** | requests |
+| **Knowledge Base** | Wikipedia API |
+| **Configuration** | python-dotenv |
 
-Speech recognition uses **Google Web Speech API** (requires internet). TTS is **offline** (pyttsx3).
-
-## Tech stack
-
-Python 3.10+ · `SpeechRecognition` · `PyAudio` · `pyttsx3` · `requests` · `wikipedia` · `python-dotenv`
-
-## Project structure
+## Project Structure
 
 ```
-Task 1 - Voice Assistant/
-├── main.py                 # Entry: listen loop + route commands
+voice-assistant/
+├── main.py                 # Entry point: listen loop and command routing
 ├── assistant/
 │   ├── __init__.py
-│   ├── __main__.py         # Alternate: python -m assistant
-│   ├── listener.py         # STT (microphone → text)
-│   ├── speaker.py          # TTS (pyttsx3)
-│   ├── commands.py         # Command router + web search
-│   ├── weather.py          # OpenWeatherMap
-│   ├── knowledge.py        # Wikipedia summaries
-│   └── reminder.py         # Threading-based reminders
+│   ├── __main__.py         # Module entry: python -m assistant
+│   ├── listener.py         # Speech-to-text (microphone input)
+│   ├── speaker.py          # Text-to-speech output (pyttsx3)
+│   ├── commands.py         # Command router and web search handler
+│   ├── weather.py          # OpenWeatherMap API integration
+│   ├── knowledge.py        # Wikipedia knowledge retrieval
+│   └── reminder.py         # Thread-based reminder scheduler
 ├── requirements.txt
+├── .env.example            # Environment variable template
 ├── .gitignore
 └── README.md
-
 ```
 
-## Quick start
+## Getting Started
 
-### 1. Clone and enter the project
+### Prerequisites
+
+- Python 3.10 or higher
+- pip (Python package manager)
+- Microphone input device
+- Internet connection (for speech recognition and API calls)
+
+### Installation
+
+1. **Clone the repository**
 
 ```bash
 git clone <your-repo-url>
-cd "Task 1 - Voice Assistant"
+cd voice-assistant
 ```
 
-### 2. Virtual environment (recommended)
+2. **Create virtual environment** (recommended)
 
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+3. **Install dependencies**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-On **Windows**, if `PyAudio` fails to build, install a matching wheel from [Christoph Gohlke’s archives](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio) or use `pip install pipwin` then `pipwin install pyaudio`.
+**Note on Windows:** If `PyAudio` installation fails, download a precompiled wheel from [Christoph Gohlke's archives](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio) matching your Python version, or use:
 
-### 4. Environment variables
+```bash
+pip install pipwin
+pipwin install pyaudio
+```
+
+### Configuration
+
+1. **Create environment file**
 
 ```bash
 copy .env.example .env
 ```
 
-Edit `.env` and set:
+2. **Set required variables**
 
-| Variable | Required for | Get it from |
-|----------|----------------|-------------|
+| Variable | Required For | Obtain From |
+|----------|--------------|------------|
 | `OPENWEATHER_API_KEY` | Weather commands | [OpenWeatherMap API](https://openweathermap.org/api) (free tier available) |
 
-### 5. Run
+Example `.env`:
+```
+OPENWEATHER_API_KEY=your_api_key_here
+```
 
-From the folder that contains `main.py`:
+## Usage
+
+### Quick Start
+
+Run the assistant from the project root:
 
 ```bash
 python main.py
 ```
 
-Or:
+Or use the module entry point:
 
 ```bash
 python -m assistant
 ```
 
-Speak after the welcome message. Say **exit**, **quit**, **bye**, or **goodbye** to stop.
+Speak naturally after the welcome message. Exit with: **exit**, **quit**, **bye**, or **goodbye**.
 
-## Usage tips
+### Example Commands
 
-- **Microphone:** Allow Python/your terminal to use the mic; reduce background noise.
-- **Web search:** The assistant speaks a short line (e.g. “Searching on Google for …”) then opens your default browser.
-- **Weather without a city in the phrase** may prompt for city via a second listen.
-- **Stale behavior after editing code (Windows):** `main.py` clears `assistant/__pycache__` on startup; if issues persist, delete `assistant/__pycache__` manually once.
+- "What time is it?"
+- "Tell me the weather in London"
+- "Search for machine learning on Google"
+- "Who is Elon Musk?"
+- "Set a reminder in 5 minutes"
+
+### Tips
+
+- **Microphone Setup:** Ensure your terminal/IDE has microphone permissions. Reduce background noise for better recognition.
+- **Web Search:** After "Searching on Google...", your default browser opens with results.
+- **Weather Queries:** If no city is mentioned, the system will ask for clarification.
+- **Reminders:** Run in the foreground; reminders trigger via voice notification.
+- **Cache Issues (Windows):** Stale imports are auto-cleared; manually delete `assistant/__pycache__` if needed.
 
 ## Testing
+
+Run the test suite:
 
 ```bash
 python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
-Covers routing order (Google vs Wikipedia), search query cleanup, and voice-meta phrases.
+Tests cover:
+- Command routing order (web search vs Wikipedia)
+- Query cleanup and parsing
+- Voice intent recognition
 
 ## Troubleshooting
 
-| Problem | What to try |
-|---------|-------------|
-| No speech recognized | Check mic permissions, internet (Google STT), speak clearly after “Listening…” |
-| “Listening timed out…” | Start speaking within the listen window; speak louder or closer to the mic |
-| Weather always says not configured | Add `OPENWEATHER_API_KEY` to `.env` (not `.env.example`) |
-| TTS silent but text prints | Windows: check default playback device; try updating / reinstalling pyttsx3 |
-| Import / old code behavior | Run from project root; use `python main.py` or `python -m assistant`; remove `assistant/__pycache__` |
+| Problem | Solution |
+|---------|----------|
+| No speech recognized | Check microphone permissions, internet connectivity, and speak clearly after "Listening…" |
+| "Listening timed out" | Speak within the listen window or closer to microphone; speak louder |
+| Weather not working | Verify `OPENWEATHER_API_KEY` is set in `.env` (not `.env.example`) |
+| TTS silent on Windows | Check default playback device in system settings; reinstall pyttsx3 if needed |
+| Stale behavior after code changes | Remove `assistant/__pycache__` directory and restart |
+| Import errors | Run from project root using `python main.py` or `python -m assistant` |
 
-## Phase status (internship)
+## Performance Considerations
 
-| Phase | Scope | Status |
-|-------|--------|--------|
-| 1 | Setup, STT, TTS | Complete |
-| 2 | Greetings, time/date, web search | Complete |
-| 3 | Weather, Wikipedia, reminders, custom JSON | Complete |
-| 4 | Error handling, tests, documentation | **Complete** |
+- **Offline Processing:** Text-to-speech runs entirely offline for instant responses.
+- **API Calls:** Weather and Wikipedia queries are cached to minimize API usage.
+- **Threading:** Reminders run on background threads without blocking the main listener loop.
 
-## Author
+## Future Enhancements
 
-Mohit Pandey
+- Support for multiple languages
+- Integration with smart home systems
+- Advanced NLP for context-aware responses
+- Voice command learning and personalization
+
+## Contributing
+
+We welcome contributions! Please feel free to submit pull requests or open issues for bugs and feature requests.
+
+## Connect With Me :)
+
+Built and maintained by **[Mohit Pandey](https://github.com/mohitpandeycs)**
+
+- GitHub — [@mohitpandeycs](https://github.com/mohitpandeycs)
+- LinkedIn — [in/mohitpandeycs](https://linkedin.com/in/mohitpandeycs)
+- Twitter / X — [@mohitpandeycs](https://x.com/mohitpandeycs)
 
 ## License
 
-MIT License
+This project is released under the MIT License.
+
+
+---
+
+<p align="center">
+  If you liked it, consider giving it a ⭐ — it helps other developers find the project.
+</p>
